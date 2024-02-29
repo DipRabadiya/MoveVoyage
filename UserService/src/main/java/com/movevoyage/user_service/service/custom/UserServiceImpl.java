@@ -4,12 +4,14 @@ package com.movevoyage.user_service.service.custom;
 
 import com.movevoyage.user_service.dto.UserDto;
 import com.movevoyage.user_service.entity.User;
+import com.movevoyage.user_service.payload.responses.MessageResponse;
 import com.movevoyage.user_service.repository.UserRepository;
 import com.movevoyage.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 

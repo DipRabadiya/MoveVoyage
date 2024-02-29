@@ -19,17 +19,17 @@ public class    GuideController {
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> save(
-            @RequestPart("nic_front") byte[] nic_front,
-            @RequestPart("nic_back") byte[] nic_back,
-            @RequestPart("guide_id_front") byte[] guide_id_front,
-            @RequestPart("guide_id_back") byte[] guide_id_back,
-            @RequestPart("profile") byte[] guide_img,
+//            @RequestPart("nic_front") byte[] nic_front,
+//            @RequestPart("nic_back") byte[] nic_back,
+//            @RequestPart("guide_id_front") byte[] guide_id_front,
+//            @RequestPart("guide_id_back") byte[] guide_id_back,
+//            @RequestPart("profile") byte[] guide_img,
             @RequestPart("guide") GuideDTO guide) {
-        guide.getImages_list().add(guide_img);
-        guide.getImages_list().add(nic_front);
-        guide.getImages_list().add(nic_back);
-        guide.getImages_list().add(guide_id_front);
-        guide.getImages_list().add(guide_id_back);
+//        guide.getImages_list().add(guide_img);
+//        guide.getImages_list().add(nic_front);
+//        guide.getImages_list().add(nic_back);
+//        guide.getImages_list().add(guide_id_front);
+//        guide.getImages_list().add(guide_id_back);
         try {
             validateGuideDetails(guide);
             if (guideService.existsByGuideId(guide.getId())) {
