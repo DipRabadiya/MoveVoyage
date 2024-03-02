@@ -15,6 +15,7 @@ public class OptionsDto {
     private String description;
     private int capacity;
     private int id;
+
     @ToString.Exclude
     private Hotel hotel;
 }

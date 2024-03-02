@@ -1,12 +1,13 @@
 package com.movevoyage.user_service.service.custom;
 
 
-
 import com.movevoyage.user_service.dto.UserDto;
 import com.movevoyage.user_service.entity.User;
 import com.movevoyage.user_service.payload.responses.MessageResponse;
 import com.movevoyage.user_service.repository.UserRepository;
 import com.movevoyage.user_service.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +21,15 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+
     @Value("${mail-service-url}")
-    private String MAIL_SERVER_URL;
+    private String mailServer;
+
+//    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, String mailUrl) {
+//        this.userRepository = userRepository;
+//        this.modelMapper = modelMapper;
+//        MAIL_SERVER_URL = mailUrl;
+//    }
 
     @Override
     public Boolean existsUserByUsername(String username) {
@@ -90,8 +98,8 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
 
-//        WebClient client = WebClient.create( MAIL_SERVER_URL+ "/email/send/welcome");
-//        client.patch().header("mail", user.getEmail()).retrieve().bodyToMono(MessageResponse.class).block();
+        WebClient client = WebClient.create( mailServer + "/email/send/welcome");
+        client.post().header("mail", user.getEmail()).retrieve().bodyToMono(MessageResponse.class).block();
 
         return true;
     }

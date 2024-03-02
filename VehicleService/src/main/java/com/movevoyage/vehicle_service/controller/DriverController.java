@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("api/v1/vehicle/driver")
+@RequestMapping("api/v1/driver")
 @RequiredArgsConstructor
 public class DriverController {
     private final DriverService driverService;
 
-    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/save")
     public ResponseEntity<?> register(
 //            @RequestPart("license_back") byte[] vehicle_img1,
-            @RequestPart("license_front") byte[] vehicle_img2,
+//            @RequestPart("license_front") byte[] vehicle_img2,
             @RequestPart("driver") DriverDto driver) {
         System.out.println("DriverController -> " + driver);
 //        driver.setLicense_back(vehicle_img1);
-        driver.setLicense_front(vehicle_img2);
+//        driver.setLicense_front(vehicle_img2);
         try {
             validateDriverDetails(driver);
             System.out.println("validated");

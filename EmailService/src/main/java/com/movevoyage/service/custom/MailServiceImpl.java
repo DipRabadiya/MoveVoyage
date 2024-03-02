@@ -18,12 +18,12 @@ public class MailServiceImpl implements MailService {
     private String FROM;
 
     public void welcome(String mail, MailStructure mailStructure) {
+        System.out.println(mail);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(mail);
         simpleMailMessage.setFrom(FROM);
-        simpleMailMessage.setSubject("Welcome to Next Travel Pvt Ltd.!");
-        simpleMailMessage.setText(EMAILS.WELCOME.getSubject());
+        simpleMailMessage.setSubject("Welcome to Move Voyage!");
+        simpleMailMessage.setText(EMAILS.WELCOME.name());
         javaMailSender.send(simpleMailMessage);
-
     }
 }

@@ -25,11 +25,16 @@ public class HotelController {
     }
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> saveHotel(@RequestPart("img1") byte[] img1, @RequestPart("img2") byte[] img2, @RequestPart("img3") byte[] img3, @RequestPart("img4") byte[] img4, @RequestPart("hotel") HotelDto hotelDto) {
-        hotelDto.getImage_list().add(img1);
-        hotelDto.getImage_list().add(img2);
-        hotelDto.getImage_list().add(img3);
-        hotelDto.getImage_list().add(img4);
+    public ResponseEntity<?> saveHotel(
+//            @RequestPart("img1") byte[] img1,
+//            @RequestPart("img2") byte[] img2,
+//            @RequestPart("img3") byte[] img3,
+//            @RequestPart("img4") byte[] img4,
+            @RequestPart("hotel") HotelDto hotelDto) {
+//        hotelDto.getImage_list().add(img1);
+//        hotelDto.getImage_list().add(img2);
+//        hotelDto.getImage_list().add(img3);
+//        hotelDto.getImage_list().add(img4);
         try {
             validateHotelDetails(hotelDto);
             if (hotelService.existsHotelById(hotelDto.getId())) {
@@ -77,11 +82,11 @@ public class HotelController {
             throw new RuntimeException("Invalid tax !");
         }
 
-        hotelDto.getOptions_list().forEach(element -> {
-            if (element.getDescription() == null && element.getPrice() == 0) {
-                throw new RuntimeException("Invalid option type !");
-            }
-        });
+//        hotelDto.getOptions_list().forEach(element -> {
+//            if (element.getDescription() == null && element.getPrice() == 0) {
+//                throw new RuntimeException("Invalid option type !");
+//            }
+//        });
 
         hotelDto.getImage_list().forEach(element -> {
             if (element == null || element.length == 0)
