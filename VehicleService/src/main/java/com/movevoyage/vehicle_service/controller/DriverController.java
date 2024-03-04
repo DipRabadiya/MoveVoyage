@@ -1,25 +1,28 @@
 package com.movevoyage.vehicle_service.controller;
 
 import com.movevoyage.vehicle_service.dto.DriverDto;
+import com.movevoyage.vehicle_service.entity.Driver;
 import com.movevoyage.vehicle_service.service.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/driver")
 @RequiredArgsConstructor
 public class DriverController {
+
     private final DriverService driverService;
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> register(
 //            @RequestPart("license_back") byte[] vehicle_img1,
 //            @RequestPart("license_front") byte[] vehicle_img2,
-            @RequestPart("driver") DriverDto driver) {
+            @RequestBody DriverDto driver) {
         System.out.println("DriverController -> " + driver);
 //        driver.setLicense_back(vehicle_img1);
 //        driver.setLicense_front(vehicle_img2);
@@ -47,14 +50,19 @@ public class DriverController {
         if (!Pattern.compile("^\\d{10}$").matcher(driver.getContact_no()).matches()) {
             throw new RuntimeException("Invalid driver contact number");
         }
-        if (driver.getLicense_front().length == 0) {
-            throw new RuntimeException("Invalid driver license front image");
-        }
-        if (driver.getLicense_back().length == 0) {
-            throw new RuntimeException("Invalid driver license back image");
-        }
+//        if (driver.getLicense_front().length == 0) {
+//            throw new RuntimeException("Invalid driver license front image");
+//        }
+//        if (driver.getLicense_back().length == 0) {
+//            throw new RuntimeException("Invalid driver license back image");
+//        }
 
         System.out.println("Driver validated");
+    }
+
+    @GetMapping("/get/{id}")
+    public Optional<Driver> getDriverById(@PathVariable String id) {
+        return driverService.getDriverById(id);
     }
 
     @GetMapping("/get/lastId")
@@ -69,8 +77,8 @@ public class DriverController {
             @RequestPart("license_front") byte[] vehicle_img2,
             @RequestPart("driver") DriverDto driver) {
         System.out.println("Driver Patch -> " + driver);
-        driver.setLicense_back(vehicle_img1);
-        driver.setLicense_front(vehicle_img2);
+//        driver.setLicense_back(vehicle_img1);
+//        driver.setLicense_front(vehicle_img2);
         try {
             validateDriverDetails(driver);
             System.out.println("validated");

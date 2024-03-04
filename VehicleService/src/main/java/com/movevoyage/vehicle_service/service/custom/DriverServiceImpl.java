@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class DriverServiceImpl implements DriverService {
@@ -29,15 +31,23 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Boolean existsDriverByDriverId(String driver_id) {
 //        System.out.println("DriverServiceImpl -> existsDriverByDriverId");
-        boolean b = driverRepository.existsDriverById(driver_id);
+        boolean b = driverRepository.existsById(driver_id);
+//        boolean b = driverRepository.findById(driver_id);
 //        System.out.println("DriverServiceImpl -> existsDriverByDriverId -> " + b);
         return b;
     }
 
+//    @Override
+//    public DriverDto findDriverById(String driver_id) {
+//        if (driverRepository.existsById(driver_id))
+//            return modelMapper.map(driverRepository.getById(driver_id), DriverDto.class);
+//        throw new RuntimeException("Driver not found!");
+//    }
+
     @Override
-    public DriverDto findDriverById(String driver_id) {
-        if (driverRepository.existsDriverById(driver_id))
-            return modelMapper.map(driverRepository.getDriverById(driver_id), DriverDto.class);
+    public DriverDto findDriverById(String id) {
+        if(driverRepository.existsById(id))
+            return modelMapper.map(driverRepository.existsById(id), DriverDto.class);
         throw new RuntimeException("Driver not found!");
     }
 
@@ -51,5 +61,10 @@ public class DriverServiceImpl implements DriverService {
         int lastDigits = Integer.parseInt(split[1]);
         lastDigits++;
         return (String.format("D%05d", lastDigits));
+    }
+
+    @Override
+    public Optional<Driver> getDriverById(String id) {
+        return driverRepository.findById(id);
     }
 }

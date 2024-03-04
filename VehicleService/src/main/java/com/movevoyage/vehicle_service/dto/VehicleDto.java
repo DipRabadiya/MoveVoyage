@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Data
@@ -23,8 +24,10 @@ public class VehicleDto {
     private String availability;//available or not-available
     private String remark;
     private List<byte[]> imageList = new ArrayList<>();
+//    private String driver_id;
     private DriverDto driver;
     private Double fee_per_day;
     private Double fee_per_km;
+
 
 }

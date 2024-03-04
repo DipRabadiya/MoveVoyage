@@ -15,7 +15,7 @@ import java.util.List;
 @EnableJpaRepositories
 @Transactional
 public interface VehicleRepository extends JpaRepository<Vehicle, String> {
-    Boolean existsVehicleById(String vehicle_id);
+//    Boolean existsVehicleById(String vehicle_id);
 
     Vehicle getVehicleById(String vehicle_id);
 

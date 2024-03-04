@@ -32,7 +32,7 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleDto.setTransmission_type(vehicle.getTransmission_type());
         vehicleDto.setAvailability(vehicle.getAvailability());
         vehicleDto.setRemark(vehicle.getRemark());
-        vehicleDto.setImageList(vehicle.getImageList());
+//        vehicleDto.setImageList(vehicle.getImageList());
         vehicleDto.setFee_per_day(vehicle.getFee_per_day());
         vehicleDto.setFee_per_km(vehicle.getFee_per_km());
         return vehicleDto;
@@ -40,7 +40,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Boolean deleteVehicle(String vehicle_id) {
-        if (vehicleRepository.existsVehicleById(vehicle_id)) {
+        if (vehicleRepository.existsById(vehicle_id)) {
             vehicleRepository.deleteById(vehicle_id);
             return true;
         }
@@ -58,7 +58,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Boolean existsVehicleByVehicleId(String vehicle_id) {
-        return vehicleRepository.existsVehicleById(vehicle_id);
+//        return vehicleRepository.existsVehicleById(vehicle_id);
+        return vehicleRepository.existsById(vehicle_id);
     }
 
     @Override
@@ -91,8 +92,8 @@ public class VehicleServiceImpl implements VehicleService {
         driverDto.setId(driver.getId());
         driverDto.setName(driver.getName());
         driverDto.setContact_no(driver.getContact_no());
-        driverDto.setLicense_back(driver.getLicense_back());
-        driverDto.setLicense_front(driver.getLicense_front());
+//        driverDto.setLicense_back(driver.getLicense_back());
+//        driverDto.setLicense_front(driver.getLicense_front());
         vehicleDto.setDriver(driverDto);
 //        System.out.println(vehicleDto);
         return vehicleDto;
@@ -122,8 +123,8 @@ public class VehicleServiceImpl implements VehicleService {
             driverDto.setId(driver.getId());
             driverDto.setName(driver.getName());
             driverDto.setContact_no(driver.getContact_no());
-            driverDto.setLicense_back(driver.getLicense_back());
-            driverDto.setLicense_front(driver.getLicense_front());
+//            driverDto.setLicense_back(driver.getLicense_back());
+//            driverDto.setLicense_front(driver.getLicense_front());
             vehicleDto.setDriver(driverDto);
             dtoList.add(vehicleDto);
         }

@@ -32,8 +32,10 @@ public class VehicleController {
             @RequestPart("vehicle_img3") byte[] vehicle_img3,
             @RequestPart("vehicle_img4") byte[] vehicle_img4,
             @RequestPart("vehicle_img5") byte[] vehicle_img5,
-            @RequestPart("vehicle") VehicleDto vehicleDto,
-            @RequestPart("driver_id") String driver_id) {
+            @RequestPart("vehicle") VehicleDto vehicleDto
+//            @RequestPart("driver_id") String driver_id
+    )
+    {
         System.out.println("VehicleController -> " + vehicleDto);
 
         vehicleDto.getImageList().add(vehicle_img1);
@@ -50,7 +52,7 @@ public class VehicleController {
 //                System.out.println("exists");
                 return ResponseEntity.badRequest().body("Vehicle already exists");
             }
-            vehicleDto.setDriver(driverService.findDriverById(driver_id));
+//            vehicleDto.setDriver(driverService.findDriverById(driver_id));
             vehicleService.save(vehicleDto);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -81,10 +83,10 @@ public class VehicleController {
             throw new RuntimeException("Invalid fee per day!");
         if (!Pattern.compile("^\\d+(?:\\.\\d+)?$").matcher(String.valueOf(vehicleDto.getFee_per_km())).matches())
             throw new RuntimeException("Invalid fee per km!");
-        vehicleDto.getImageList().forEach((element) -> {
-            if (element == null || element.length == 0)
-                throw new RuntimeException("Invalid or empty image found in the list.");
-        });
+//        vehicleDto.getImageList().forEach((element) -> {
+//            if (element == null || element.length == 0)
+//                throw new RuntimeException("Invalid or empty image found in the list.");
+//        });
     }
 
     @DeleteMapping("/delete")
@@ -112,14 +114,14 @@ public class VehicleController {
     }
 
     @GetMapping("/check/")
-    public ResponseEntity<?> existsByVehicleId(@RequestHeader String vehicle_id) {
+    public ResponseEntity<?> existsByVehicleId(@PathVariable String vehicle_id) {
         Boolean isExists = vehicleService.existsVehicleByVehicleId(vehicle_id);
         if (isExists) return ResponseEntity.ok(true);
         return ResponseEntity.ok().body(false);
     }
 
     @GetMapping("/get")
-    public ResponseEntity<?> getVehicleByVehicleID(@RequestHeader String vehicle_id) {
+    public ResponseEntity<?> getVehicleByVehicleID(@PathVariable String vehicle_id) {
         System.out.println("VehicleController -> getVehicleByVehicleID: " + vehicle_id);
         Boolean isExists = vehicleService.existsVehicleByVehicleId(vehicle_id);
         if (!isExists) return ResponseEntity.badRequest().body("Vehicle not found !");
