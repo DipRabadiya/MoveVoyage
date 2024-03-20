@@ -14,6 +14,7 @@ public class DiscountDto {
     private boolean is_available;
     private double discount_percentage;
     private String description;
+
     @ToString.Exclude
     private HotelDto hotel;
 }

@@ -33,7 +33,9 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public StandardMessageResponse save(@RequestPart("receipt") byte[] receipt, @RequestPart("payment") PaymentDto paymentDto) {
+    public StandardMessageResponse save(
+            @RequestPart("receipt") byte[] receipt,
+            @RequestPart("payment") PaymentDto paymentDto) {
         System.out.println(paymentDto);
         paymentDto.setReceipt(receipt);
         try {

@@ -2,6 +2,7 @@ package com.movevoyage.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.Data;
 import java.util.Date;
 
@@ -12,6 +13,9 @@ public class Payment {
     private String id;
     private String booking_id;
     private double amount;
+
+
     private byte [] receipt;
+
     private Date payment_date;
 }
