@@ -113,14 +113,14 @@ public class VehicleController {
 
     }
 
-    @GetMapping("/check/")
+    @GetMapping("/check/{vehicle_id}")
     public ResponseEntity<?> existsByVehicleId(@PathVariable String vehicle_id) {
         Boolean isExists = vehicleService.existsVehicleByVehicleId(vehicle_id);
         if (isExists) return ResponseEntity.ok(true);
         return ResponseEntity.ok().body(false);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get/{vehicle_id}")
     public ResponseEntity<?> getVehicleByVehicleID(@PathVariable String vehicle_id) {
         System.out.println("VehicleController -> getVehicleByVehicleID: " + vehicle_id);
         Boolean isExists = vehicleService.existsVehicleByVehicleId(vehicle_id);
@@ -137,7 +137,14 @@ public class VehicleController {
     }
 
     @PatchMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> updateVehicle(@RequestPart("vehicle_img1") byte[] vehicle_img1, @RequestPart("vehicle_img2") byte[] vehicle_img2, @RequestPart("vehicle_img3") byte[] vehicle_img3, @RequestPart("vehicle_img4") byte[] vehicle_img4, @RequestPart("vehicle_img5") byte[] vehicle_img5, @RequestPart("vehicle") VehicleDto vehicleDto, @RequestPart("driver_id") String driver_id) {
+    public ResponseEntity<?> updateVehicle(
+            @RequestPart("vehicle_img1") byte[] vehicle_img1,
+            @RequestPart("vehicle_img2") byte[] vehicle_img2,
+            @RequestPart("vehicle_img3") byte[] vehicle_img3,
+            @RequestPart("vehicle_img4") byte[] vehicle_img4,
+            @RequestPart("vehicle_img5") byte[] vehicle_img5,
+            @RequestPart("vehicle") VehicleDto vehicleDto,
+            @RequestPart("driver_id") String driver_id) {
         System.out.println("Patch -> " + vehicleDto);
         vehicleDto.getImageList().add(vehicle_img1);
         vehicleDto.getImageList().add(vehicle_img2);

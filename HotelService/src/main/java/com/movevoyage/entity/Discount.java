@@ -3,9 +3,12 @@ package com.movevoyage.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Discount {
     @Id
     private String code;

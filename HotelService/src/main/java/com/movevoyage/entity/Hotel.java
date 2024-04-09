@@ -1,13 +1,17 @@
 package com.movevoyage.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Hotel {
 
     @ElementCollection
@@ -31,7 +35,7 @@ public class Hotel {
     private String cancellation_criteria;
     private double tax;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Discount> discount_list = new ArrayList<>();
 
     @OneToMany(cascade ={ CascadeType.ALL}, fetch = FetchType.EAGER)

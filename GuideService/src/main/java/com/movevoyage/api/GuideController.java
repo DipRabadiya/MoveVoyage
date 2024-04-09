@@ -27,6 +27,7 @@ public class    GuideController {
             @RequestPart("guide") GuideDTO guide) {
 //        guide.getImages_list().add(guide_img);
 //        guide.getImages_list().add(nic_front);
+//        guide.getImages_list().add(nic_front);
 //        guide.getImages_list().add(nic_back);
 //        guide.getImages_list().add(guide_id_front);
 //        guide.getImages_list().add(guide_id_back);

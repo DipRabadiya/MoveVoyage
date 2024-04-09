@@ -37,7 +37,7 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody UserDto userDto) {
         System.out.println("register");
         System.out.println(userDto);
-        userDto.setUser_id(userService.getOngoingUserID());
+//        userDto.setUser_id(userService.getOngoingUserID());
         return userService.save(userDto) ? ResponseEntity.ok().body(new MessageResponse("User registration successful", null)) : ResponseEntity.badRequest().body(new MessageResponse("User registration failed", null));
     }
 

@@ -20,12 +20,12 @@ public class DriverController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> register(
-//            @RequestPart("license_back") byte[] vehicle_img1,
-//            @RequestPart("license_front") byte[] vehicle_img2,
-            @RequestBody DriverDto driver) {
+            @RequestPart("license_back") byte[] vehicle_img1,
+            @RequestPart("license_front") byte[] vehicle_img2,
+            @RequestPart("Driver") DriverDto driver) {
         System.out.println("DriverController -> " + driver);
-//        driver.setLicense_back(vehicle_img1);
-//        driver.setLicense_front(vehicle_img2);
+        driver.setLicense_back(vehicle_img1);
+        driver.setLicense_front(vehicle_img2);
         try {
             validateDriverDetails(driver);
             System.out.println("validated");

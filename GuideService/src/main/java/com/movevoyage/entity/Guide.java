@@ -22,7 +22,7 @@ public class Guide {
     private String contact_number;
     private String experience;
     private double man_day_value;
-    @Column(length = 255)
+    @Column(length = 4096)
     private List<byte[]> images_list = new ArrayList<>();
     private String remark;
 

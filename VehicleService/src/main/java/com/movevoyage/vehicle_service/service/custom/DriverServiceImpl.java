@@ -47,7 +47,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDto findDriverById(String id) {
         if(driverRepository.existsById(id))
-            return modelMapper.map(driverRepository.existsById(id), DriverDto.class);
+            return modelMapper.map(driverRepository.getDriverById(id), DriverDto.class);
         throw new RuntimeException("Driver not found!");
     }
 

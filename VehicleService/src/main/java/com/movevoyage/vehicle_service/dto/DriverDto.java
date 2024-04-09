@@ -12,8 +12,8 @@ public class DriverDto {
     private String id;
     private String name;
     private String contact_no;
-//    private byte[] license_front;
-//    private byte[] license_back;
+    private byte[] license_front;
+    private byte[] license_back;
 
     @ToString.Exclude
     private VehicleDto vehicle;
